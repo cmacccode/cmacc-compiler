@@ -23,7 +23,7 @@ function bind(ast) {
       if( to.type === 'string'){
         from.data = to.data.replace(/\{\{([^}]*)\}\}/g, (match, variable) =>{
           const split = x.data.split('.');
-          const res = split.slice(0, split.length - 1).join('.') + '.' + variable;
+          const res = split.slice(0, split.length - 1).concat(variable).join('.');
           return `{{${res}}}`;
         })
       }else{

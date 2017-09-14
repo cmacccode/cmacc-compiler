@@ -30,7 +30,7 @@ module.exports = () => {
   };
 
   const section = (str, ast) => {
-    const val = str.match(/^['"](.*)['"]$/)[1];
+    const val = str.match(/^['"]?(.*)['"]?$/)[1];
     const split = val.split('.');
     const pos = split.length;
     for (let i = 0; i < 6; i++) {

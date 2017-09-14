@@ -1,6 +1,6 @@
 {
   "name": "cmacc-compiler",
-  "version": "2.1.2",
+  "version": "2.1.4",
   "description": "Cmacc Compiler",
   "main": "src/index.js",
   "author": "",
