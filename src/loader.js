@@ -31,12 +31,20 @@ const loader = (x, opts) => {
   // file
   if (fs && urlObj.protocol === 'file:') {
     const promise = new Promise((resolve, reject) => {
-      let file;
-      if (urlObj.host === 'node_modules') {
-        file = path.join('node_modules', decodeURI(urlObj.path));
-      } else {
-        file = decodeURI(urlObj.path).slice(1);
+      let file = decodeURI(urlObj.path);
+      // windows path fixes
+      if (process.platform === 'win32') {
+        // The path is sometimes given as file://node_modules/... and
+        // node_modules is considered the host.
+        if (urlObj.host) {
+          file = decodeURI(path.join(urlObj.host, urlObj.path));
+        }
+        // The path is sometimes given as /c:/..., remove the first '/'
+        if (urlObj.path.match(/\/[a-z]:\//)) {
+          file = file.slice(1);
+        }
       }
+
       fs.readFile(file, (err, data) => {
         if (err) return reject(err);
         resolve({
