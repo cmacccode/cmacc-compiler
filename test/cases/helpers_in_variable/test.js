@@ -7,7 +7,7 @@ describe('helpers_in_variable', function () {
   global.fs = require('fs');
   global.fetch = require('node-fetch');
 
-  it('HelloWordSection', function (done) {
+  xit('HelloWordSection', function (done) {
     const file = url.join('file://', __dirname, './HelloWordSection.cmacc');
 
     cmacc.compile(file)
